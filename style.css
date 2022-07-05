@@ -1,0 +1,43 @@
+body{
+    background: linear-gradient(#1f4037,#99f2c8);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+h1
+{
+    color:white;
+}
+label
+{
+    font-size: larger;
+    color:white;
+}
+
+.topnav {
+  background-color: rgb(54, 114, 110);
+  overflow: hidden;
+  display: horizontal;
+}
+.topnav a {
+  float: left;
+  color: #aec0b9;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: rgb(131, 230, 197);
+  color: rgb(140, 175, 144);
+}
+.topnav a.active {
+  background-color: #34c58e;
+  color: white;
+}
+
+  
+style.css
+Displaying style.css.
