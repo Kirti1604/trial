@@ -1,3 +1,6 @@
+<!-- <?php
+include "dbconn.php"; 
+?> -->
 <!doctype html>
 <html lang="en">
 
@@ -31,7 +34,7 @@
 
   <body>
     <div class="topnav">
-        <a class="nav-link" href=""><b><u>Sankey Solutions</b></u> <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="https://sankeysolutions.com/#/innovation-lab"><b><u>Sankey Solutions</b></u> <span class="sr-only">(current)</span></a>
         <a class="nav-link" href="login.php">Login</a>
         <a class="nav-link" href="register.php">Registration</a>
       </div>
@@ -39,6 +42,10 @@
     <div class="container my-4">
       <h1 class="text-center">Registration</h1>
       <form method="post">
+      <div class="form-group col-md-6">
+            <label for="uname">Name</label>
+            <input type="text" class="form-control" id="uname" name="umail" placeholder="Enter your name">
+          </div>
         <div class="form-group col-md-6">
             <label for="umail">Email</label>
             <input type="text" class="form-control" id="umail" name="umail" placeholder="Enter your email">
@@ -60,7 +67,7 @@
           </select>
         </div>
         
-        <button type="submit" name="techsignup" class="btn btn-primary">Signup</button>
+        <button type="submit" name="register" class="btn btn-primary">Signup</button>
       </form>
     </div>
   </body>
