@@ -1,3 +1,24 @@
+<?php
+session_start();
+include "dbconn.php";
+if(isset($_POST['login'])){
+  echo "1";
+              $useremail = $_POST['email'];
+              $password = $_POST['password'];
+              $sql    = "select * from emp where umail='$useremail 'and upassword='$password'";
+              $result = mysqli_query($conn, $sql);
+              if (mysqli_num_rows($result) > 0) {
+                echo "ok";
+                $_SESSION['uid'] =$row['uid'];;
+                header("Location: home.php");
+                echo "ok";
+              }
+}
+
+echo "3";
+?>
+
+
 <!doctype html>
 <html lang="en">
 
@@ -48,8 +69,8 @@
         <label for="password">Password</label>
         <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password">
       </div>
-      <button type="submit" name="login" class="btn btn-primary"> login
-      <!-- <a href="login.php? loginid='.$userid.'" class ="text-light">Login</a>   -->
+      <button type="submit" name="login" class="btn btn-primary">
+      <a href="login.php? loginid='.$userid.'" class ="text-light">Login</a>  
       </button>
     </form>
   </div>

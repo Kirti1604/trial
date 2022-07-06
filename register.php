@@ -1,6 +1,39 @@
-<!-- <?php
-include "dbconn.php"; 
-?> -->
+<?php
+include "dbconn.php";
+if(isset($_POST['register'])){
+  $username = $_POST['name'];
+  $useremail = $_POST['mail'];
+  $password = $_POST['password'];
+  $cpassword = $_POST['cpassword'];
+  $type = $_POST['type'];
+
+
+  $sql = "SELECT * FROM `emp` WHERE `umail`='$useremail'";
+  $result = mysqli_query($conn, $sql);
+  if (mysqli_num_rows($result) > 0) {
+    // while ($row = mysqli_fetch_assoc($result)) {
+    //   $mail = $row['umail'];
+    echo '<script>alert("email already exist")</script>';
+  }elseif ($password == $cpassword) {
+    $sql = "INSERT INTO `emp` (`uname`,`umail`, `upassword`, `utype`)
+    VALUES ('$username', '$useremail', '$password', '$type')";
+    $result = mysqli_query ($conn, $sql);
+    if ($result==true) {
+      echo "<script>
+                        alert('Registred Successfully..!');
+                        window.location.href='login.php';
+                        </script>";
+    }
+  } else {
+     echo '<script>alert("password does not match")</script>';
+  }
+}
+?>
+
+
+
+
+
 <!doctype html>
 <html lang="en">
 
@@ -43,31 +76,32 @@ include "dbconn.php";
       <h1 class="text-center">Registration</h1>
       <form method="post">
       <div class="form-group col-md-6">
-            <label for="uname">Name</label>
-            <input type="text" class="form-control" id="uname" name="umail" placeholder="Enter your name">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name">
           </div>
         <div class="form-group col-md-6">
-            <label for="umail">Email</label>
-            <input type="text" class="form-control" id="umail" name="umail" placeholder="Enter your email">
+            <label for="mail">Email</label>
+            <input type="text" class="form-control" id="mail" name="mail" placeholder="Enter your email">
           </div>
         <div class="form-group col-md-6">
-          <label for="upassword">Password</label>
-          <input type="password" class="form-control" id="upassword" name="upassword" placeholder="Enter Password" required>
+          <label for="password">Password</label>
+          <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password" required>
         </div>
         <div class="form-group col-md-6">
-          <label for="ucpassword">Confirm Password</label>
-          <input type="password" class="form-control" id="ucpassword" name="ucpassword" placeholder="Make sure to enter same password" required>
+          <label for="cpassword">Confirm Password</label>
+          <input type="password" class="form-control" id="cpassword" name="cpassword" placeholder="Make sure to enter same password" required>
         </div>
         <div class="form-group col-md-6">
-          <label for="utype"> Select Employee Type </label>
-          <select class="form-control" id="utype" name="utype">
+          <label for="type"> Select Employee Type </label>
+          <select class="form-control" id="type" name="type">
             <option>HR</option>
             <option>Team Lead</option>
             <option>Employee</option>
           </select>
         </div>
         
-        <button type="submit" name="register" class="btn btn-primary">Signup</button>
+        <button type="submit" name="register" class="btn btn-primary">Signup
+        </button>
       </form>
     </div>
   </body>
