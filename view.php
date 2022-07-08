@@ -34,24 +34,14 @@
                 </tr>
             </thead>
             <tbody>
-              <?php
-              session_start();
-              include "dbconn.php";
-              echo"1";
-              if(isset($_POST['login'])){
-                $sql = "SELECT * FROM `emp` WHERE `umail`='$useremail'";
-                $result = mysqli_query($conn, $sql);
-                if (mysqli_num_rows($result) > 0) {
-                  while ($row = mysqli_fetch_assoc($result)) {
-                    $level = $row['level'];
-                  }
-                  if($level == 0){
-                 
-                    // $sql= "SELECT * FROM `emp` where `level`='$level'";
-                    $sql= "SELECT * FROM `emp`";
-                    $result = mysqli_query($conn, $sql);
-                    if (mysqli_num_rows($result)) {
-                      while($row = mysqli_fetch_assoc($result)){
+            <?php           
+                session_start();
+                include "dbconn.php";
+                 $sql = "SELECT * FROM `emp`";
+                  $result = mysqli_query($conn, $sql);
+                  if (mysqli_num_rows($result) > 0) {
+
+                    while($row = mysqli_fetch_assoc($result)){
                         $id = $row['uid'];
                         $name = $row['uname'];
                         $email = $row['umail'];
@@ -63,38 +53,16 @@
                         <td>'.$name.'</td>
                         <td>'.$email.'</td>
                         <td>'.$password.'</td>
-                        <td>'.$type.'</td>         
+                        <td>'.$type.'</td>   
+                        <td>
+                          <button class="btn btn-danger">
+                            <a href="delete.php? deleteid='.$id.'" class ="text-light">Delete</a>
+                          </button>
+                        </td>      
                         </tr>';
-                      }
                     }
-
-
-                  }elseif($level == 1){
-                    
                   }
-                }
-              }
-              // $userid = $_SESSION['uid'];
-              // $sql    = "SELECT * FROM emp WHERE 'uid'= '$userid'";
-              // $result = mysqli_query($conn, $sql);
-              // if ($result) {
-              //  while($row = mysqli_fetch_assoc($result)){
-              //   $id = $row['uid'];
-              //   $name = $row['uname'];
-              //   $email = $row['umail'];
-              //   $password = $row['upassword'];
-              //   $type = $row['utype'];
-
-              //   echo'<tr>
-              //   <th scope="row">'.$id.'</th>
-              //   <td>'.$name.'</td>
-              //   <td>'.$email.'</td>
-              //   <td>'.$password.'</td>
-              //   <td>'.$type.'</td>
               
-              //   </tr>';
-              //  }
-              // }
               ?>
                
               

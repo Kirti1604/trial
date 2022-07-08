@@ -11,8 +11,6 @@ if(isset($_POST['register'])){
   $sql = "SELECT * FROM `emp` WHERE `umail`='$useremail'";
   $result = mysqli_query($conn, $sql);
   if (mysqli_num_rows($result) > 0) {
-    // while ($row = mysqli_fetch_assoc($result)) {
-    //   $mail = $row['umail'];
     echo '<script>alert("email already exist")</script>';
   }elseif ($password == $cpassword) {
     $sql = "INSERT INTO `emp` (`uname`,`umail`, `upassword`, `utype`)
@@ -25,7 +23,7 @@ if(isset($_POST['register'])){
                         </script>";
     }
   } else {
-     echo '<script>alert("password does not match")</script>';
+     echo '<script>alert("password does not match Please check your data once")</script>';
   }
 }
 ?>
@@ -43,6 +41,8 @@ if(isset($_POST['register'])){
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css" type="text/css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>Registration</title>
     <style>
       .container {
@@ -55,6 +55,11 @@ if(isset($_POST['register'])){
         margin-left: 100px;
         width: 150%;
       }
+    
+      form i {
+            margin-left: 500px;
+            cursor: pointer;
+        }
 
       button {
         padding: 15px;
@@ -77,24 +82,29 @@ if(isset($_POST['register'])){
       <form method="post">
       <div class="form-group col-md-6">
             <label for="name">Name</label>
-            <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name">
+            <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" required>
           </div>
         <div class="form-group col-md-6">
             <label for="mail">Email</label>
-            <input type="text" class="form-control" id="mail" name="mail" placeholder="Enter your email">
+            <input type="text" class="form-control" id="mail" name="mail" placeholder="Enter your email"  required>
           </div>
+        
         <div class="form-group col-md-6">
           <label for="password">Password</label>
           <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password" required>
-        </div>
+          <i class="bi bi-eye" id="togglePassword"></i>
+        </div> 
+        
         <div class="form-group col-md-6">
           <label for="cpassword">Confirm Password</label>
           <input type="password" class="form-control" id="cpassword" name="cpassword" placeholder="Make sure to enter same password" required>
+          
         </div>
         <div class="form-group col-md-6">
           <label for="type"> Select Employee Type </label>
           <select class="form-control" id="type" name="type">
-            <option>HR</option>
+          <option>Admin</option>
+           <option>HR</option>
             <option>Team Lead</option>
             <option>Employee</option>
           </select>
@@ -104,5 +114,17 @@ if(isset($_POST['register'])){
         </button>
       </form>
     </div>
+    <script>
+        const togglePassword = document
+            .querySelector('#togglePassword');
+        const password = document.querySelector('#password');
+        togglePassword.addEventListener('click', () => {
+            const type = password
+                .getAttribute('type') === 'password' ?
+                'text' : 'password';
+                 password.setAttribute('type', type);
+            this.classList.toggle('bi-eye');
+        });
+     </script>
   </body>
 </html>

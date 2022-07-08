@@ -34,14 +34,14 @@
       padding: 2px 16px;
     }
   </style>
-  <title>Welcome Admin</title>
+  <title>Welcome User</title>
 </head>
 
 <body>
 
 <div class="topnav">
         <a class="nav-link" href="https://sankeysolutions.com/#/innovation-lab"><b><u>Sankey Solutions</b></u> <span class="sr-only">(current)</span></a>
-        <a class="nav-link" href="view.php">Veiw details</a>
+        <!-- <a class="nav-link" href="view.php">Veiw details</a> -->
         <a class="nav-link" href="logout.php">Logout</a>
       </div>
       <br><br><br>

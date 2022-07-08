@@ -1,19 +1,26 @@
 <?php
 session_start();
 include "dbconn.php";
-if(isset($_POST['login'])){
-  echo "1";
-              $useremail = $_POST['email'];
-              $password = $_POST['password'];
-              $sql    = "select * from emp where umail='$useremail 'and upassword='$password'";
-              $result = mysqli_query($conn, $sql);
-              if (mysqli_num_rows($result) > 0) {
-                echo "ok";
-                $_SESSION['uid'] =$row['uid'];;
-                header("Location: home.php");
-                echo "ok";
-              }
-}
+    if(isset($_POST['login'])){
+      $useremail = $_POST['email'];
+      $password = $_POST['password'];
+      $sql    = "select * from emp where umail='$useremail 'and upassword='$password'";
+      $result = mysqli_query($conn, $sql);
+            if (mysqli_num_rows($result) > 0) {
+                    echo "ok";
+                    while ($row = mysqli_fetch_assoc($result)) {
+                      $type = $row['utype'];
+                    }
+                    if($type == admin){
+                      header("Location: home.php");
+                      echo "ok";
+                     }
+                    else{
+                        header("Location: userhome.php");
+                        echo "ok";
+                      }
+              }    
+     }
 
 echo "3";
 ?>
