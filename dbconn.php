@@ -14,3 +14,4 @@ if ($conn == TRUE) {
 } else {
     echo "not ok";
 }
+?>
